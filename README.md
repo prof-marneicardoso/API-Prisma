@@ -244,7 +244,7 @@ app.delete("/users/:id", async (request, response) => {
 
 ```js
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://${host}$:${port}`);
+  console.log(`Servidor rodando em http://${host}:${port}`);
 });
 ```
 

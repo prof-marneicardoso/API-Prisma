@@ -1,0 +1,25 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Representa o Modelo da Tabela no DB
+model User {
+  id        Int       @id   @default(autoincrement())
+  name      String
+  email     String    @unique
+  createdAt DateTime  @default(now())
+
+  @@map("users") // <-- define o nome da tabela no banco como "users"
+}

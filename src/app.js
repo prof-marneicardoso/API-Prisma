@@ -1,7 +1,6 @@
 import "dotenv/config";
 import express, { request, response } from "express";
 import { PrismaClient } from "@prisma/client";
-import { use } from "react";
 
 const app = express();
 const prisma = new PrismaClient();
@@ -27,16 +26,15 @@ app.get("/users", async (request, response) => {
 
 // Rota para listar um usuário
 app.get("/users/:id", async (request, response) => {
-    const user = await prisma.user.findUnique({
-        where: { id }
-    });
+  const id = parseInt(request.params.id);
+  const user = await prisma.user.findUnique({
+    where: { id }
+  });
 
-    if (!user) {
-        return response.status(404).json({
-            error: "Usuário não encontrado"
-        });
-    }
-    response.json(user);
+  if (!user) {
+    return response.status(404).json({ error: "Usuário não encontrado" });
+  }
+  response.json(user);
 });
 
 // Rota para atualizar um usuário

@@ -19,6 +19,7 @@ model User {
   id        Int       @id   @default(autoincrement())
   name      String
   email     String    @unique
+  password  String
   createdAt DateTime  @default(now())
 
   @@map("users") // <-- define o nome da tabela no banco como "users"

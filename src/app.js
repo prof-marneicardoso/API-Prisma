@@ -1,23 +1,21 @@
-import "dotenv/config";
-import express, { request, response } from "express";
-import { PrismaClient } from "@prisma/client";
+import cors from "cors";
+// import env from "dotenv";
+import express from "express";
+import userRoutes from "./routes/user.routes.js"; // COMPLETAR
 
 const app = express();
-const prisma = new PrismaClient();
 
+app.use(cors());
 app.use(express.json());
 
-const host = "localhost";
-const port = 3300;
+app.use("/api/users", userRoutes);
 
-// Rota para criar um novo Usuário
-app.post("/users", async (request, response) => {
-    const user = await prisma.user.create({
-        data: request.body
-    });
-    response.json(user);
-});
 
+// import "dotenv/config";
+// import express, { request, response } from "express";
+
+
+/*
 // Rota para listar todos os usuários
 app.get("/users", async (request, response) => {
     const users = await prisma.user.findMany();
@@ -61,3 +59,6 @@ app.listen(port, () => {
     // console.log(`Servidor rodando em http://localhost:3300`);
     console.log(`Servidor rodando em http://${host}:${port}`);
 });
+*/
+
+export default app;
